@@ -1,5 +1,31 @@
 <p id="notice"><%= notice %></p>
 
+<div class="row">
+  <% @members.each do |member| %>
+    <div class="col-sm-6 col-md-3">
+      <div class="thumbnail">
+        <%= link_to (image_tag member.image.url(:medium), class: 'image'), member %>
+        <div class="caption">
+          <div class="table-responsive">
+          <table class="table">
+            <tbody>
+              <tr>
+                <td><strong>Title:</strong></td>
+                <td><%= member.name %></td>
+              </tr>
+              <tr>
+                <td><strong>Description:</strong></td>
+                <td><%= member.lastname %></td>
+              </tr>
+            </tbody>
+          </table>
+         </div>
+      </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
 <h1>Members</h1>
 
 <table>
