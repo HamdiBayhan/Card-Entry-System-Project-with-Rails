@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<% if @member.email == "tkent@dhs.com" %>
+<h1>Members</h1>
 <div class="row">
   <% @members.each do |member| %>
     <div class="col-sm-6 col-md-3">
@@ -10,12 +12,19 @@
           <table class="table">
             <tbody>
               <tr>
-                <td><strong>Title:</strong></td>
+                <td><strong>Member Name:</strong></td>
+                <td></td>
                 <td><%= member.name %></td>
               </tr>
               <tr>
-                <td><strong>Description:</strong></td>
+                <td><strong>Member Lastname:</strong></td>
+                <td></td>
                 <td><%= member.lastname %></td>
+              </tr>
+              <tr>
+                <td><strong><%= link_to 'Show', member %></strong></td>
+                <td><strong><%= link_to 'Edit', edit_member_path(member) %></strong></td>
+                <td><strong><%= link_to 'Destroy', member, method: :delete, data: { confirm: 'Are you sure?' } %></strong></td>
               </tr>
             </tbody>
           </table>
@@ -26,24 +35,9 @@
   <% end %>
 </div>
 
-<h1>Members</h1>
+<% else %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Cardid</th>
-      <th>Email</th>
-      <th>Name</th>
-      <th>Lastname</th>
-      <th>Confirm</th>
-      <th>Userate</th>
-      <th>Inside</th>
-      <th>Entrydate</th>
-      <th>Memberdate</th>
-      <th>Imagepath</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<% end %>
 
   <tbody>
     <% @members.each do |member| %>

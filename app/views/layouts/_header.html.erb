@@ -1,3 +1,4 @@
+
 <nav class="navbar navbar-default" role="navigation">
   <div class="container">
     <div class="navbar-header">
@@ -14,9 +15,8 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <% if management_signed_in? %>
-          
+          <li><%= link_to 'Sign out', destroy_management_session_path, :method => :delete %></li>
         <% else %>
-          <li><%= link_to "Sign Up", new_management_registration_path, class: "active" %></li>
           <li><%= link_to "Sign In", new_management_session_path, class: "active" %></li>
         <% end %>
       </ul>
@@ -24,3 +24,4 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+

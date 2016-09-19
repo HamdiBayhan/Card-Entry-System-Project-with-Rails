@@ -1,10 +1,11 @@
 class MembersController < ApplicationController
   before_action :set_member, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_management!, except: [:index, :show]
+  before_action :authenticate_management!, except: [:new]
   # GET /members
   # GET /members.json
   def index
     @members = Member.all
+    @member = current_management
   end
 
   # GET /members/1
@@ -20,6 +21,7 @@ class MembersController < ApplicationController
   # GET /members/1/edit
   def edit
   end
+
 
   # POST /members
   # POST /members.json
