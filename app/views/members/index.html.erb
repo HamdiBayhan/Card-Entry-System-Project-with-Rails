@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Members</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Cardid</th>
+      <th>Email</th>
+      <th>Name</th>
+      <th>Lastname</th>
+      <th>Confirm</th>
+      <th>Userate</th>
+      <th>Inside</th>
+      <th>Entrydate</th>
+      <th>Memberdate</th>
+      <th>Imagepath</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @members.each do |member| %>
+      <tr>
+        <td><%= member.cardId %></td>
+        <td><%= member.email %></td>
+        <td><%= member.name %></td>
+        <td><%= member.lastname %></td>
+        <td><%= member.confirm %></td>
+        <td><%= member.useRate %></td>
+        <td><%= member.inside %></td>
+        <td><%= member.entryDate %></td>
+        <td><%= member.memberDate %></td>
+        <td><%= member.imagePath %></td>
+        <td><%= link_to 'Show', member %></td>
+        <td><%= link_to 'Edit', edit_member_path(member) %></td>
+        <td><%= link_to 'Destroy', member, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Member', new_member_path %>

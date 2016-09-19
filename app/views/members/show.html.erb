@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Cardid:</strong>
+  <%= @member.cardId %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @member.email %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @member.name %>
+</p>
+
+<p>
+  <strong>Lastname:</strong>
+  <%= @member.lastname %>
+</p>
+
+<p>
+  <strong>Confirm:</strong>
+  <%= @member.confirm %>
+</p>
+
+<p>
+  <strong>Userate:</strong>
+  <%= @member.useRate %>
+</p>
+
+<p>
+  <strong>Inside:</strong>
+  <%= @member.inside %>
+</p>
+
+<p>
+  <strong>Entrydate:</strong>
+  <%= @member.entryDate %>
+</p>
+
+<p>
+  <strong>Memberdate:</strong>
+  <%= @member.memberDate %>
+</p>
+
+<p>
+  <strong>Imagepath:</strong>
+  <%= @member.imagePath %>
+</p>
+
+<%= link_to 'Edit', edit_member_path(@member) %> |
+<%= link_to 'Back', members_path %>
