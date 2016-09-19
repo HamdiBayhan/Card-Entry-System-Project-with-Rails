@@ -22,6 +22,8 @@
   <tbody>
     <% @members.each do |member| %>
       <tr>
+
+        <td><%= image_tag member.image.url(:medium) %></td>
         <td><%= member.cardId %></td>
         <td><%= member.email %></td>
         <td><%= member.name %></td>
@@ -31,7 +33,6 @@
         <td><%= member.inside %></td>
         <td><%= member.entryDate %></td>
         <td><%= member.memberDate %></td>
-        <td><%= member.imagePath %></td>
         <td><%= link_to 'Show', member %></td>
         <td><%= link_to 'Edit', edit_member_path(member) %></td>
         <td><%= link_to 'Destroy', member, method: :delete, data: { confirm: 'Are you sure?' } %></td>

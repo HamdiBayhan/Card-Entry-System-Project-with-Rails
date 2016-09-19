@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<%= image_tag @member.image.url(:medium) %>
 
 <p>
   <strong>Cardid:</strong>
@@ -45,10 +45,7 @@
   <%= @member.memberDate %>
 </p>
 
-<p>
-  <strong>Imagepath:</strong>
-  <%= @member.imagePath %>
-</p>
+
 
 <%= link_to 'Edit', edit_member_path(@member) %> |
 <%= link_to 'Back', members_path %>
