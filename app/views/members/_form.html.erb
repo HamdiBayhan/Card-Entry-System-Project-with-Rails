@@ -1,3 +1,5 @@
+
+
 <%= form_for member, html: { multipart: true } do |f| %>
   <% if member.errors.any? %>
     <div id="error_explanation">
@@ -11,27 +13,27 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :cardId %>
     <%= f.number_field :cardId %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :email %>
     <%= f.text_field :email %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :lastname %>
     <%= f.text_field :lastname %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :image %>
     <%= f.file_field :image %>
   </div>

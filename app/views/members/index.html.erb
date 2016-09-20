@@ -1,7 +1,39 @@
-<p id="notice"><%= notice %></p>
+
 
 <% if @member.email == "tkent@dhs.com" %>
-<h1>Members</h1>
+
+<div class="container-fluid">
+
+<ul class="nav nav-pills" role="tablist">
+    <li role="presentation" class="active"><h3><span class="label label-success">Boştaki Kart Sayısı </span><span class="badge"><%= @asd.updated_at.to_i %></span></h3></li>
+    <li role="presentation"><h3><span class="label label-info">Kullanımdaki Kart Sayısı </span><span class="badge"><%= @members.length %></span></h3></li>
+    <li role="presentation"><h3><span class="label label-danger">Henüz Onaylanmamış </span><span class="badge"><%= @cMembers.length %></span></h3></li>
+    <li role="presentation"><h3><span class="label label-warning">İçeride Bulunan Kişi Sayısı </span><span class="badge"><%= @iMembers.length %></span></h3></li>
+</ul>
+<br>
+<br>
+
+<table id="table" class="table table-bordered">
+
+    <h3>En Çok Kullanan İlk 5 Kişi</h3>
+
+    <tr class="active">
+        
+    </tr>
+
+    <% @tMembers.each do |tMember| %>
+        <tr class="success">
+            <td class="kartId"><%= tMember.cardId %></td>
+            <td><%= tMember.name %></td>
+            <td><%= tMember.lastname %></td>
+            <td><%= tMember.useRate %></td>
+        </tr>
+    <% end %>
+
+</table>
+
+<h1>Üyeler</h1>
+<br>
 <div class="row">
   <% @members.each do |member| %>
     <div class="col-sm-6 col-md-3">
@@ -12,12 +44,17 @@
           <table class="table">
             <tbody>
               <tr>
-                <td><strong>Member Name:</strong></td>
+                <td><strong>Card Id:</strong></td>
+                <td></td>
+                <td><%= member.cardId %></td>
+              </tr>
+              <tr>
+                <td><strong>Name:</strong></td>
                 <td></td>
                 <td><%= member.name %></td>
               </tr>
               <tr>
-                <td><strong>Member Lastname:</strong></td>
+                <td><strong>Lastname:</strong></td>
                 <td></td>
                 <td><%= member.lastname %></td>
               </tr>
@@ -34,14 +71,12 @@
     </div>
   <% end %>
 </div>
-
+</div>  
 <% else %>
 
 <div class="panel panel-default">
-  <!-- Default panel contents -->
   <div class="panel-heading">Panel heading</div>
 
-  <!-- Table -->
   <table id="table" class="table table-bordered">
 
       <tr class="active">
@@ -50,6 +85,7 @@
           <th>İsim</th>
           <th>Soyisim</th>
           <th>Onayla</th>
+          <th>Sil</th>
       </tr>
 
     <% @cMembers.each do |cMember| %>
@@ -58,38 +94,13 @@
           <td><%= cMember.email %></td>
           <td><%= cMember.name %></td>
           <td><%= cMember.lastname %></td>
-          <td><%= link_to 'like', member_asd_path(cMember)%></td>
+          <td><%= link_to 'Onayla', member_confirm_path(cMember)%></td>
+          <td><%= link_to 'Sil', cMember, method: :delete, data: { confirm: 'Are you sure?' } %></td>
      
-          <td><a href="" class="btn btn-success" role="button" >Onayla</a> </td>
       </tr>
     <% end %>
-</table>
+  </table>
 </div>
 
 <% end %>
 
-  <tbody>
-    <% @members.each do |member| %>
-      <tr>
-
-        <td><%= image_tag member.image.url(:medium) %></td>
-        <td><%= member.cardId %></td>
-        <td><%= member.email %></td>
-        <td><%= member.name %></td>
-        <td><%= member.lastname %></td>
-        <td><%= member.confirm %></td>
-        <td><%= member.useRate %></td>
-        <td><%= member.inside %></td>
-        <td><%= member.entryDate %></td>
-        <td><%= member.memberDate %></td>
-        <td><%= link_to 'Show', member %></td>
-        <td><%= link_to 'Edit', edit_member_path(member) %></td>
-        <td><%= link_to 'Destroy', member, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Member', new_member_path %>

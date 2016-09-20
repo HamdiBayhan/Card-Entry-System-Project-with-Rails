@@ -42,10 +42,7 @@
 
 <p>
   <strong>Memberdate:</strong>
-  <%= @member.memberDate %>
+  <%= @member.created_at %>
 </p>
 
-
-
-<%= link_to 'Edit', edit_member_path(@member) %> |
 <%= link_to 'Back', members_path %>

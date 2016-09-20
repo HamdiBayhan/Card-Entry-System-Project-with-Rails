@@ -7,26 +7,25 @@ class MembersController < ApplicationController
     @members = Member.all
     @member = current_management
     @cMembers = Member.where(confirm: "NC")
+    @iMembers = Member.where(inside: "on")
+    @tMembers = Member.order(id: :desc).limit(5)
+    @asd = Member.find(17)
   end
 
-  # GET /members/1
-  # GET /members/1.json
   def show
     
   end
 
-  def asd
+  def confirm
    @member = Member.find(params[:member_id])
    @member.update_attribute(:confirm, "YC")
    redirect_to members_url
   end
 
-  # GET /members/new
   def new
     @member = Member.new
   end
 
-  # GET /members/1/edit
   def edit
   end
 
@@ -34,16 +33,14 @@ class MembersController < ApplicationController
 
   end
 
-  # POST /members
-  # POST /members.json
   def create
     @member = Member.new(member_params)
 
     respond_to do |format|
       if @member.save
-        format.html { redirect_to @member, notice: 'Member was successfully created.' }
-        format.json { render :show, status: :created, location: @member }
-        @member.update_attribute(:confirm, "NC")
+        format.html { redirect_to root_path, notice: 'Member was successfully created.' }
+        format.json { render :new, status: :created, location: @member }
+        @member.update_attributes(:confirm => "NC", :useRate => 0, :inside => "off", :entryDate => 0)
       else
         format.html { render :new }
         format.json { render json: @member.errors, status: :unprocessable_entity }
@@ -51,8 +48,6 @@ class MembersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /members/1
-  # PATCH/PUT /members/1.json
   def update
     respond_to do |format|
       if @member.update(member_params)
@@ -65,8 +60,6 @@ class MembersController < ApplicationController
     end
   end
 
-  # DELETE /members/1
-  # DELETE /members/1.json
   def destroy
     @member.destroy
     respond_to do |format|
@@ -76,12 +69,11 @@ class MembersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_member
       @member = Member.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def member_params
       params.require(:member).permit(:cardId, :email, :name, :lastname, :confirm, :useRate, :inside, :entryDate, :memberDate, :image)
     end
