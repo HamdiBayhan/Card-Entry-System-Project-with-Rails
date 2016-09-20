@@ -36,8 +36,8 @@ class SimulationsController < ApplicationController
         format.html { redirect_to @simulation, notice: 'Simulation was successfully created.' }
         format.json { render :show, status: :created, location: @simulation }
 
-        @er.update_attribute(:inside, "on")
-        
+        i = @er.useRate + 1
+        @er.update_attributes(:inside => "on", :useRate => i)
         
       else
         format.html { render :new }

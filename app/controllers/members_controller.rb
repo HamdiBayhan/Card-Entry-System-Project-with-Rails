@@ -11,7 +11,7 @@ class MembersController < ApplicationController
     @member = current_management
     @cMembers = Member.where(confirm: "NC")
     @iMembers = Member.where(inside: "on")
-    @tMembers = Member.order(id: :desc).limit(5)
+    @tMembers = Member.order(useRate: :desc).limit(5)
     @asd = "***"
   end
 
