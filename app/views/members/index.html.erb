@@ -37,6 +37,35 @@
 
 <% else %>
 
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Panel heading</div>
+
+  <!-- Table -->
+  <table id="table" class="table table-bordered">
+
+      <tr class="active">
+          <th>KartId</th>
+          <th>E-Mail</th>
+          <th>İsim</th>
+          <th>Soyisim</th>
+          <th>Onayla</th>
+      </tr>
+
+    <% @cMembers.each do |cMember| %>
+      <tr class="success">
+          <td><%= cMember.id %></td>
+          <td><%= cMember.email %></td>
+          <td><%= cMember.name %></td>
+          <td><%= cMember.lastname %></td>
+          <td><%= link_to 'like', member_asd_path(cMember)%></td>
+     
+          <td><a href="" class="btn btn-success" role="button" >Onayla</a> </td>
+      </tr>
+    <% end %>
+</table>
+</div>
+
 <% end %>
 
   <tbody>

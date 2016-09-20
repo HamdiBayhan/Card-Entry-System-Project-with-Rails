@@ -6,11 +6,19 @@ class MembersController < ApplicationController
   def index
     @members = Member.all
     @member = current_management
+    @cMembers = Member.where(confirm: "NC")
   end
 
   # GET /members/1
   # GET /members/1.json
   def show
+    
+  end
+
+  def asd
+   @member = Member.find(params[:member_id])
+   @member.update_attribute(:confirm, "YC")
+   redirect_to members_url
   end
 
   # GET /members/new
@@ -22,6 +30,9 @@ class MembersController < ApplicationController
   def edit
   end
 
+  def updateConfirm
+
+  end
 
   # POST /members
   # POST /members.json
@@ -32,6 +43,7 @@ class MembersController < ApplicationController
       if @member.save
         format.html { redirect_to @member, notice: 'Member was successfully created.' }
         format.json { render :show, status: :created, location: @member }
+        @member.update_attribute(:confirm, "NC")
       else
         format.html { render :new }
         format.json { render json: @member.errors, status: :unprocessable_entity }
