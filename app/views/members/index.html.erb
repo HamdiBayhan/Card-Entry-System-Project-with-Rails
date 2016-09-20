@@ -1,11 +1,16 @@
 
+<% @iMembers.each do |member| %>
+<%  if Time.now.to_i - member.updated_at.to_i > 10 %>
+<%    member.update_attribute(:inside, "off") %>
+<%  end %>
+<%  end %>
 
 <% if @member.email == "tkent@dhs.com" %>
 
 <div class="container-fluid">
 
 <ul class="nav nav-pills" role="tablist">
-    <li role="presentation" class="active"><h3><span class="label label-success">Boştaki Kart Sayısı </span><span class="badge"><%= @asd.updated_at.to_i %></span></h3></li>
+    <li role="presentation" class="active"><h3><span class="label label-success">Boştaki Kart Sayısı </span><span class="badge"><%= @asd %></span></h3></li>
     <li role="presentation"><h3><span class="label label-info">Kullanımdaki Kart Sayısı </span><span class="badge"><%= @members.length %></span></h3></li>
     <li role="presentation"><h3><span class="label label-danger">Henüz Onaylanmamış </span><span class="badge"><%= @cMembers.length %></span></h3></li>
     <li role="presentation"><h3><span class="label label-warning">İçeride Bulunan Kişi Sayısı </span><span class="badge"><%= @iMembers.length %></span></h3></li>

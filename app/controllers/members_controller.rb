@@ -3,13 +3,16 @@ class MembersController < ApplicationController
   before_action :authenticate_management!, except: [:new]
   # GET /members
   # GET /members.json
+
+  
+
   def index
     @members = Member.all
     @member = current_management
     @cMembers = Member.where(confirm: "NC")
     @iMembers = Member.where(inside: "on")
     @tMembers = Member.order(id: :desc).limit(5)
-    @asd = Member.find(17)
+    @asd = "***"
   end
 
   def show
@@ -22,6 +25,7 @@ class MembersController < ApplicationController
    redirect_to members_url
   end
 
+
   def new
     @member = Member.new
   end
@@ -29,9 +33,7 @@ class MembersController < ApplicationController
   def edit
   end
 
-  def updateConfirm
 
-  end
 
   def create
     @member = Member.new(member_params)
@@ -76,5 +78,6 @@ class MembersController < ApplicationController
 
     def member_params
       params.require(:member).permit(:cardId, :email, :name, :lastname, :confirm, :useRate, :inside, :entryDate, :memberDate, :image)
+
     end
 end

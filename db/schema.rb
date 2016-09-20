@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160920133032) do
+ActiveRecord::Schema.define(version: 20160920165927) do
+
+  create_table "card_sim_ts", force: :cascade do |t|
+    t.string   "cardSimId"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "card_sims", force: :cascade do |t|
     t.integer  "cardSimId"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "dens", force: :cascade do |t|
+    t.integer  "denId"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -50,6 +62,12 @@ ActiveRecord::Schema.define(version: 20160920133032) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+  end
+
+  create_table "simulations", force: :cascade do |t|
+    t.integer  "simId"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

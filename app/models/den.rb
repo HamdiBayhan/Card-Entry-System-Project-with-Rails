@@ -1,0 +1,2 @@
+class Den < ApplicationRecord
+end
