@@ -26,28 +26,32 @@ class SimulationsController < ApplicationController
   def create
     @simulation = Simulation.new(simulation_params)
     @er = Member.where(cardId: @simulation.simId).first
+                
+    if Member.exists?(:cardId => @simulation.simId)
 
-    if @er.inside == "off"
+      if @er.inside == "off"
 
-    respond_to do |format|
+        respond_to do |format|
 
-      if @simulation.save
+          if @simulation.save
 
-        format.html { redirect_to @simulation, notice: 'Simulation was successfully created.' }
-        format.json { render :show, status: :created, location: @simulation }
-
-        i = @er.useRate + 1
-        @er.update_attributes(:inside => "on", :useRate => i)
-        
+            format.html { redirect_to @simulation, notice: 'Simulation was successfully created.' }
+            format.json { render :show, status: :created, location: @simulation }
+            i = @er.useRate + 1        
+            @er.update_attributes(:useRate => i, :inside => "on")
+            
+          else
+            format.html { render :new }
+            format.json { render json: @simulation.errors, status: :unprocessable_entity }
+          end
+        end
       else
-        format.html { render :new }
-        format.json { render json: @simulation.errors, status: :unprocessable_entity }
+          @er.update_attribute(:inside, "off")
+          redirect_to :back
       end
-    
-      end
+
     else
-        @er.update_attribute(:inside, "off")
-        redirect_to @simulation
+      redirect_to new_simulation_path
     end
   end
 

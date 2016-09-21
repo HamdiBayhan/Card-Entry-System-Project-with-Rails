@@ -9,3 +9,5 @@ jQuery ->
 		xkey: 'created_at'
 		ykeys: ['rate_use']
 		labels: ['Günlük Kullanım']
+
+	

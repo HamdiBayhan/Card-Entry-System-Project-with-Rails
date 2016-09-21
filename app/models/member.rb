@@ -4,4 +4,11 @@ class Member < ApplicationRecord
 
 searchkick
 
+validates :name, format: { with: /\A[a-zA-Z]+\z/,
+    message: "only allows letters" }
+validates :lastname, format: { with: /\A[a-zA-Z]+\z/,
+    message: "only allows letters" }
+validates :cardId, uniqueness: true
+validates :email, uniqueness: true
+
 end

@@ -1,11 +1,5 @@
-
 <%= content_tag :div, "", id: "simulations_chart", data: {simulations: simulations_chart_data} %>
 
-<% @iMembers.each do |member| %>
-<%  if Time.now.to_i - member.updated_at.to_i > 10 %>
-<%    member.update_attribute(:inside, "off") %>
-<%  end %>
-<%  end %>
 
 <% if @member.email == "tkent@dhs.com" %>
 

@@ -4,13 +4,18 @@ class MembersController < ApplicationController
   # GET /members
   # GET /members.json
 
-  
-
   def index
     @members = Member.all
     @member = current_management
     @cMembers = Member.where(confirm: "NC")
     @iMembers = Member.where(inside: "on")
+
+    @iMembers.each do |member| 
+      if Time.now.to_i - member.updated_at.to_i > 10 
+        member.update_attribute(:inside, "off") 
+      end 
+    end 
+
     @tMembers = Member.order(useRate: :desc).limit(5)
     @asd = "***"
   end
