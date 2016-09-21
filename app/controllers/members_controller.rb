@@ -1,6 +1,6 @@
 class MembersController < ApplicationController
   before_action :set_member, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_management!, except: [:new]
+  before_action :authenticate_management!, except: [:new, :create]
   # GET /members
   # GET /members.json
 
@@ -25,6 +25,13 @@ class MembersController < ApplicationController
    redirect_to members_url
   end
 
+  def search
+    if params[:search].present?
+      @members = Member.search(params[:search])
+    else
+      @members = Member.all
+    end
+  end
 
   def new
     @member = Member.new
