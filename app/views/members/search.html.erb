@@ -6,38 +6,38 @@
           <%= link_to (image_tag member.image.url(:medium), class: 'image'), member %>
           <div class="caption">
             <div class="table-responsive">
-            <table class="table">
-              <tbody>
-                <tr>
-                  <td><strong>Card Id:</strong></td>
-                  <td></td>
-                  <td><%= member.cardId %></td>
-                </tr>
-                <tr>
-                  <td><strong>Name:</strong></td>
-                  <td></td>
-                  <td><%= member.name %></td>
-                </tr>
-                <tr>
-                  <td><strong>Lastname:</strong></td>
-                  <td></td>
-                  <td><%= member.lastname %></td>
-                </tr>
-                <tr>
-                  <td><strong><%= link_to 'Show', member %></strong></td>
-                  <td><strong><%= link_to 'Edit', edit_member_path(member) %></strong></td>
-                  <td><strong><%= link_to 'Destroy', member, method: :delete, data: { confirm: 'Are you sure?' } %></strong></td>
-                </tr>
-              </tbody>
-            </table>
-           </div>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><strong>Card Id:</strong></td>
+                    <td></td>
+                    <td><%= member.cardId %></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Name:</strong></td>
+                    <td></td>
+                    <td><%= member.name %></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Lastname:</strong></td>
+                    <td></td>
+                    <td><%= member.lastname %></td>
+                  </tr>
+                  <tr>
+                    <td><strong><%= link_to 'Show', member %></strong></td>
+                    <td><strong><%= link_to 'Edit', edit_member_path(member) %></strong></td>
+                    <td><strong><%= link_to 'Destroy', member, method: :delete, data: { confirm: 'Are you sure?' } %></strong></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
     <% end %>
   </div>
 <% else %>
-<script type="text/javascript">
-    window.location.href="/members" 
-</script>
+  <script type="text/javascript">
+      window.location.href="/members" 
+  </script>
 <% end %>

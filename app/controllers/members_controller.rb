@@ -16,37 +16,41 @@ class MembersController < ApplicationController
         member.update_attribute(:inside, "off") 
       end 
     end 
-
     @tMembers = Member.order(useRate: :desc).limit(5)
-    @asd = "***"
+    @asd = CardInfo.all
   end
 
   def show
-    
+  end
+
+  def generate_cardId
+    for i in 1..150
+      CardInfo.create(cardId: i)
+    end
   end
 
   def confirm
    @member = Member.find(params[:member_id])
    @member.update_attribute(:confirm, "YC")
    redirect_to members_url
-  end
+ end
 
-  def search
-    @q = Member.search(params[:q])
-    @members = @q.result
-  end
+ def search
+  @q = Member.search(params[:q])
+  @members = @q.result
+end
 
-  def new
-    @member = Member.new
-  end
+def new
+  @member = Member.new
+end
 
-  def edit
-  end
+def edit
+end
 
 
-  def create
-    @member = Member.new(member_params)
-
+def create
+  @member = Member.new(member_params)
+  if CardInfo.exists?(:cardId => @member.cardId)
     respond_to do |format|
       if @member.save
         format.html { redirect_to root_path, notice: 'Member was successfully created.' }
@@ -56,37 +60,40 @@ class MembersController < ApplicationController
         format.html { render :new }
         format.json { render json: @member.errors, status: :unprocessable_entity }
       end
+      CardInfo.where(cardId: @member.cardId).destroy_all
     end
   end
+end
 
-  def update
-    respond_to do |format|
-      if @member.update(member_params)
-        format.html { redirect_to @member, notice: 'Member was successfully updated.' }
-        format.json { render :show, status: :ok, location: @member }
-      else
-        format.html { render :edit }
-        format.json { render json: @member.errors, status: :unprocessable_entity }
-      end
+def update
+  respond_to do |format|
+    if @member.update(member_params)
+      format.html { redirect_to @member, notice: 'Member was successfully updated.' }
+      format.json { render :show, status: :ok, location: @member }
+    else
+      format.html { render :edit }
+      format.json { render json: @member.errors, status: :unprocessable_entity }
     end
   end
+end
 
-  def destroy
-    @member.destroy
-    respond_to do |format|
-      format.html { redirect_to members_url, notice: 'Member was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+def destroy
+  @member.destroy
+  respond_to do |format|
+    format.html { redirect_to members_url, notice: 'Member was successfully destroyed.' }
+    format.json { head :no_content }
+    CardInfo.create(cardId: @member.cardId)
   end
+end
 
-  private
+private
 
-    def set_member
-      @member = Member.find(params[:id])
-    end
+def set_member
+  @member = Member.find(params[:id])
+end
 
-    def member_params
-      params.require(:member).permit(:cardId, :email, :name, :lastname, :confirm, :useRate, :inside, :entryDate, :memberDate, :image)
+def member_params
+  params.require(:member).permit(:cardId, :email, :name, :lastname, :confirm, :useRate, :inside, :entryDate, :memberDate, :image)
 
-    end
+end
 end

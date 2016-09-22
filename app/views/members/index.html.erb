@@ -1,61 +1,60 @@
 
-<%= content_tag :div, "", id: "simulations_chart", data: {simulations: simulations_chart_data} %>
-
-
 <% if @member.email == "tkent@dhs.com" %>
+
+<%= content_tag :div, "", id: "simulations_chart", data: {simulations: simulations_chart_data} %>
+<br>
 
 <div class="container-fluid">
 
-<ul class="nav nav-pills" role="tablist">
-    <li role="presentation" class="active"><h3><span class="label label-success">Boştaki Kart Sayısı </span><span class="badge"><%= @asd %></span></h3></li>
+  <ul class="nav nav-pills" role="tablist">
+    <li role="presentation" class="active"><h3><span class="label label-success">Boştaki Kart Sayısı </span><span class="badge"><%= @asd.length %></span></h3></li>
     <li role="presentation"><h3><span class="label label-info">Kullanımdaki Kart Sayısı </span><span class="badge"><%= @members.length %></span></h3></li>
     <li role="presentation"><h3><span class="label label-danger">Henüz Onaylanmamış </span><span class="badge"><%= @cMembers.length %></span></h3></li>
     <li role="presentation"><h3><span class="label label-warning">İçeride Bulunan Kişi Sayısı </span><span class="badge"><%= @iMembers.length %></span></h3></li>
-</ul>
-<br>
-<br>
+  </ul>
+  <br>
+  <br>
 
-<table id="table" class="table table-bordered">
+  <table id="table" class="table table-bordered">
 
     <h3>En Çok Kullanan İlk 5 Kişi</h3>
 
     <tr class="active">
-        
+      
     </tr>
 
     <% @tMembers.each do |tMember| %>
-        <tr class="success">
-            <td class="kartId"><%= tMember.cardId %></td>
-            <td><%= tMember.name %></td>
-            <td><%= tMember.lastname %></td>
-            <td><%= tMember.useRate %></td>
-        </tr>
+    <tr class="success">
+      <td class="kartId"><%= tMember.cardId %></td>
+      <td><%= tMember.name %></td>
+      <td><%= tMember.lastname %></td>
+      <td><%= tMember.useRate %></td>
+    </tr>
     <% end %>
+  </table>
 
-</table>
-
-<h1>Üyeler</h1>
-<br>
-<div class="row">
-  <% @members.each do |member| %>
+  <h1>Üyeler</h1>
+  <br>
+  <div class="row">
+    <% @members.each do |member| %>
     <div class="col-sm-6 col-md-3">
       <div class="thumbnail">
         <%= link_to (image_tag member.image.url(:medium), class: 'image'), member %>
         <div class="caption">
           <div class="table-responsive">
-          <table class="table">
-            <tbody>
-              <tr>
-                <td><strong>Card Id:</strong></td>
-                <td></td>
-                <td><%= member.cardId %></td>
-              </tr>
-              <tr>
-                <td><strong>Name:</strong></td>
-                <td></td>
-                <td><%= member.name %></td>
-              </tr>
-              <tr>
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td><strong>Card Id:</strong></td>
+                  <td></td>
+                  <td><%= member.cardId %></td>
+                </tr>
+                <tr>
+                 <td><strong>Name:</strong></td>
+                 <td></td>
+                 <td><%= member.name %></td>
+               </tr>
+               <tr>
                 <td><strong>Lastname:</strong></td>
                 <td></td>
                 <td><%= member.lastname %></td>
@@ -67,39 +66,39 @@
               </tr>
             </tbody>
           </table>
-         </div>
-      </div>
+        </div>
       </div>
     </div>
+  </div>
   <% end %>
 </div>
 </div>  
 <% else %>
 
 <div class="panel panel-default">
-  <div class="panel-heading">Panel heading</div>
+  <div class="panel-heading">Üye Onaylama Ekranı</div>
 
   <table id="table" class="table table-bordered">
 
-      <tr class="active">
-          <th>KartId</th>
-          <th>E-Mail</th>
-          <th>İsim</th>
-          <th>Soyisim</th>
-          <th>Onayla</th>
-          <th>Sil</th>
-      </tr>
+    <tr class="active">
+      <th>KartId</th>
+      <th>E-Mail</th>
+      <th>İsim</th>
+      <th>Soyisim</th>
+      <th>Onayla</th>
+      <th>Sil</th>
+    </tr>
 
     <% @cMembers.each do |cMember| %>
-      <tr class="success">
-          <td><%= cMember.cardId %></td>
-          <td><%= cMember.email %></td>
-          <td><%= cMember.name %></td>
-          <td><%= cMember.lastname %></td>
-          <td><%= link_to 'Onayla', member_confirm_path(cMember)%></td>
-          <td><%= link_to 'Sil', cMember, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-     
-      </tr>
+    <tr class="success">
+      <td><%= cMember.cardId %></td>
+      <td><%= cMember.email %></td>
+      <td><%= cMember.name %></td>
+      <td><%= cMember.lastname %></td>
+      <td><%= link_to 'Onayla', member_confirm_path(cMember)%></td>
+      <td><%= link_to 'Sil', cMember, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      
+    </tr>
     <% end %>
   </table>
 </div>

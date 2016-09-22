@@ -1,62 +1,46 @@
 class SimulationsController < ApplicationController
   before_action :set_simulation, only: [:show, :edit, :update, :destroy]
 
-  # GET /simulations
-  # GET /simulations.json
   def index
     @simulations = Simulation.all
   end
 
-  # GET /simulations/1
-  # GET /simulations/1.json
   def show
   end
 
-  # GET /simulations/new
   def new
     @simulation = Simulation.new
   end
 
-  # GET /simulations/1/edit
   def edit
   end
 
-  # POST /simulations
-  # POST /simulations.json
   def create
     @simulation = Simulation.new(simulation_params)
     @er = Member.where(cardId: @simulation.simId).first
-                
+    
     if Member.exists?(:cardId => @simulation.simId)
-
       if @er.inside == "off"
-
         respond_to do |format|
-
           if @simulation.save
-
             format.html { redirect_to @simulation, notice: 'Simulation was successfully created.' }
             format.json { render :show, status: :created, location: @simulation }
             i = @er.useRate + 1        
             @er.update_attributes(:useRate => i, :inside => "on")
-            
           else
             format.html { render :new }
             format.json { render json: @simulation.errors, status: :unprocessable_entity }
           end
         end
       else
-          @er.update_attribute(:inside, "off")
-          redirect_to :back
+        @er.update_attribute(:inside, "off")
+        redirect_to :back
       end
-
     else
       redirect_to new_simulation_path
     end
   end
 
-  # PATCH/PUT /simulations/1
-  # PATCH/PUT /simulations/1.json
   def update
     respond_to do |format|
       if @simulation.update(simulation_params)
@@ -69,8 +53,6 @@ class SimulationsController < ApplicationController
     end
   end
 
-  # DELETE /simulations/1
-  # DELETE /simulations/1.json
   def destroy
     @simulation.destroy
     respond_to do |format|
@@ -89,4 +71,4 @@ class SimulationsController < ApplicationController
     def simulation_params
       params.require(:simulation).permit(:simId)
     end
-end
+  end
