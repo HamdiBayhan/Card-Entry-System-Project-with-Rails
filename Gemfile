@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
-
+gem 'ransack', github: 'activerecord-hackery/ransack'
+gem 'will_paginate', github: 'jonatack/will_paginate'
 gem 'bootstrap-sass', '~> 3.3.6'
-gem 'searchkick', '~> 1.3', '>= 1.3.4'
 gem "paperclip", "~> 5.0.0"
 gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

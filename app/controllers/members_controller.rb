@@ -1,6 +1,7 @@
 class MembersController < ApplicationController
   before_action :set_member, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_management!, except: [:new, :create]
+  before_filter :search
   # GET /members
   # GET /members.json
 
@@ -31,11 +32,8 @@ class MembersController < ApplicationController
   end
 
   def search
-    if params[:search].present?
-      @members = Member.search(params[:search])
-    else
-      @members = Member.all
-    end
+    @q = Member.search(params[:q])
+    @members = @q.result
   end
 
   def new
@@ -44,7 +42,6 @@ class MembersController < ApplicationController
 
   def edit
   end
-
 
 
   def create

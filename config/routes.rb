@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   devise_for :managements
   resources :members do
   	collection do
-  	  get 'search'
-  	end
+      match 'search' => 'members#search', via: [:get, :post], as: :search
+    end
   	post :confirm
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

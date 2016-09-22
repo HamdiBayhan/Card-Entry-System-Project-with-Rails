@@ -21,14 +21,17 @@
         <% end %>
         <li><%= link_to 'KartSim', new_simulation_path, class: "active" %></li>
       </ul>
-      
-      <%= form_tag search_members_path, method: :get, class: "navbar-form navbar-right", role: "search" do %>
-        <p>
-          <%= text_field_tag :search, params[:search], class: "form-control" %>
-          <%= submit_tag "Search", name: nil, class: "btn btn-default" %>
-        </p>
-      <% end %>
-      
+
+      <%= search_form_for @q, url: search_members_path, html: { method: :post }, class: "navbar-form navbar-right"  do |f| %>
+<div class="field">
+  <%= f.label :cardId_eq %> 
+  <%= f.text_field :cardId_eq %>
+  <div class="btn btn-default"> <%= f.submit "Üye Ara" %> </div>
+  </div>
+  
+  
+<% end %>
+           
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
