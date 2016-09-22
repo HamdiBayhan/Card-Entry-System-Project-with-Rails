@@ -7,10 +7,10 @@
 <div class="container-fluid">
 
   <ul class="nav nav-pills" role="tablist">
-    <li role="presentation" class="active"><h3><span class="label label-success">Boştaki Kart Sayısı </span><span class="badge"><%= @asd.length %></span></h3></li>
+    <li role="presentation" class="active"><h3><span class="label label-success">Boştaki Kart Sayısı </span><span class="badge"><%= @not_use_card.length %></span></h3></li>
     <li role="presentation"><h3><span class="label label-info">Kullanımdaki Kart Sayısı </span><span class="badge"><%= @members.length %></span></h3></li>
-    <li role="presentation"><h3><span class="label label-danger">Henüz Onaylanmamış </span><span class="badge"><%= @cMembers.length %></span></h3></li>
-    <li role="presentation"><h3><span class="label label-warning">İçeride Bulunan Kişi Sayısı </span><span class="badge"><%= @iMembers.length %></span></h3></li>
+    <li role="presentation"><h3><span class="label label-danger">Henüz Onaylanmamış </span><span class="badge"><%= @confirm_members.length %></span></h3></li>
+    <li role="presentation"><h3><span class="label label-warning">İçeride Bulunan Kişi Sayısı </span><span class="badge"><%= @inside_members.length %></span></h3></li>
   </ul>
   <br>
   <br>
@@ -18,17 +18,20 @@
   <table id="table" class="table table-bordered">
 
     <h3>En Çok Kullanan İlk 5 Kişi</h3>
-
+    <br>
     <tr class="active">
-      
+      <th>Kart ID</th>
+      <th>İsim</th>
+      <th>Soyisim</th>
+      <th>Kullanım Oranı</th>
     </tr>
 
-    <% @tMembers.each do |tMember| %>
+    <% @top_use_members.each do |top_use_member| %>
     <tr class="success">
-      <td class="kartId"><%= tMember.cardId %></td>
-      <td><%= tMember.name %></td>
-      <td><%= tMember.lastname %></td>
-      <td><%= tMember.useRate %></td>
+      <td class="kartId"><%= top_use_member.cardId %></td>
+      <td><%= top_use_member.name %></td>
+      <td><%= top_use_member.lastname %></td>
+      <td><%= top_use_member.useRate %></td>
     </tr>
     <% end %>
   </table>
@@ -45,17 +48,17 @@
             <table class="table">
               <tbody>
                 <tr>
-                  <td><strong>Card Id:</strong></td>
+                  <td><strong>Kart ID:</strong></td>
                   <td></td>
                   <td><%= member.cardId %></td>
                 </tr>
                 <tr>
-                 <td><strong>Name:</strong></td>
+                 <td><strong>İsim:</strong></td>
                  <td></td>
                  <td><%= member.name %></td>
                </tr>
                <tr>
-                <td><strong>Lastname:</strong></td>
+                <td><strong>Soyisim:</strong></td>
                 <td></td>
                 <td><%= member.lastname %></td>
               </tr>
@@ -89,14 +92,14 @@
       <th>Sil</th>
     </tr>
 
-    <% @cMembers.each do |cMember| %>
+    <% @confirm_members.each do |confirm_member| %>
     <tr class="success">
-      <td><%= cMember.cardId %></td>
-      <td><%= cMember.email %></td>
-      <td><%= cMember.name %></td>
-      <td><%= cMember.lastname %></td>
-      <td><%= link_to 'Onayla', member_confirm_path(cMember)%></td>
-      <td><%= link_to 'Sil', cMember, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td><%= confirm_member.cardId %></td>
+      <td><%= confirm_member.email %></td>
+      <td><%= confirm_member.name %></td>
+      <td><%= confirm_member.lastname %></td>
+      <td><%= link_to 'Onayla', member_confirm_path(confirm_member)%></td>
+      <td><%= link_to 'Sil', confirm_member, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       
     </tr>
     <% end %>

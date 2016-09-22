@@ -12,32 +12,32 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.label :cardId %>
-    <%= f.number_field :cardId %>
+    <%= f.label :cardId, "Kart ID" %>
+    <%= f.number_field :cardId, placeholder: "Kart ID giriniz", class: 'form-control' %>
   </div>
 
   <div class="form-group">
-    <%= f.label :email %>
-    <%= f.text_field :email %>
+    <%= f.label :email, "E-Mail" %>
+    <%= f.text_field :email, placeholder: "Email adresinizi giriniz",class: 'form-control' %>
   </div>
 
   <div class="form-group">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+    <%= f.label :name, "İsim" %>
+    <%= f.text_field :name, placeholder: "Adınızı giriniz", class: 'form-control' %>
   </div>
 
   <div class="form-group">
-    <%= f.label :lastname %>
-    <%= f.text_field :lastname %>
+    <%= f.label :lastname, "Soyisim" %>
+    <%= f.text_field :lastname, placeholder: "Soyadınızı giriniz", class: 'form-control' %>
   </div>
 
   <div class="form-group">
-    <%= f.label :image %>
-    <%= f.file_field :image %>
+    <%= f.label :image, "Fotoğraf" %>
+    <%= f.file_field :image, class: 'form-control' %>
   </div>
 
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Kayıt Ol" %>
   </div>
 <% end %>

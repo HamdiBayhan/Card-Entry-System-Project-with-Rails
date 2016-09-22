@@ -5,8 +5,9 @@ Rails.application.routes.draw do
   	collection do
       match 'search' => 'members#search', via: [:get, :post], as: :search
     end
-  	post :confirm
+    match 'confirm' => 'members#confirm', via: [:get, :post]
+
   end
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-   root "members#new"
+  
+  root "members#new"
 end

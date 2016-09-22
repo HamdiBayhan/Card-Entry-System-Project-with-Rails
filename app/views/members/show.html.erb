@@ -1,48 +1,57 @@
-<%= image_tag @member.image.url(:medium) %>
-
-<p>
-  <strong>Cardid:</strong>
-  <%= @member.cardId %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @member.email %>
-</p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @member.name %>
-</p>
-
-<p>
-  <strong>Lastname:</strong>
-  <%= @member.lastname %>
-</p>
-
-<p>
-  <strong>Confirm:</strong>
-  <%= @member.confirm %>
-</p>
-
-<p>
-  <strong>Userate:</strong>
-  <%= @member.useRate %>
-</p>
-
-<p>
-  <strong>Inside:</strong>
-  <%= @member.inside %>
-</p>
-
-<p>
-  <strong>Entrydate:</strong>
-  <%= @member.entryDate %>
-</p>
-
-<p>
-  <strong>Memberdate:</strong>
-  <%= @member.created_at %>
-</p>
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <div class="thumbnail">
+        <%= link_to (image_tag @member.image.url(:medium), class: 'image'), @member %>
+        <div class="caption">
+          <div class="table-responsive">
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td><strong>Kart ID:</strong></td>
+                  <td></td>
+                  <td><%= @member.cardId %></td>
+                </tr>
+                <tr>
+                 <td><strong>İsim:</strong></td>
+                 <td></td>
+                 <td><%= @member.name %></td>
+               </tr>
+               <tr>
+                <td><strong>Soyisim:</strong></td>
+                <td></td>
+                <td><%= @member.lastname %></td>
+              </tr>
+              <tr>
+                <td><strong>Email:</strong></td>
+                <td></td>
+                <td><%= @member.email %></td>
+              </tr>
+              <tr>
+                <td><strong>Onaylı mı?:</strong></td>
+                <td></td>
+                <td><%= @member.confirm %></td>
+              </tr>
+              <tr>
+                <td><strong>Kullanım Oranı:</strong></td>
+                <td></td>
+                <td><%= @member.useRate %></td>
+              </tr>
+              <tr>
+                <td><strong>İçeride mi?:</strong></td>
+                <td></td>
+                <td><%= @member.inside %></td>
+              </tr>
+              <tr>
+                <td><strong>Üyelik Tarihi:</strong></td>
+                <td></td>
+                <td><%= @member.created_at %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <%= link_to 'Back', members_path %>

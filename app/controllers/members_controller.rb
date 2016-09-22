@@ -2,22 +2,20 @@ class MembersController < ApplicationController
   before_action :set_member, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_management!, except: [:new, :create]
   before_filter :search
-  # GET /members
-  # GET /members.json
-
+  
   def index
     @members = Member.all
     @member = current_management
-    @cMembers = Member.where(confirm: "NC")
-    @iMembers = Member.where(inside: "on")
+    @confirm_members = Member.where(confirm: "NC")
+    @inside_members = Member.where(inside: "on")
 
-    @iMembers.each do |member| 
-      if Time.now.to_i - member.updated_at.to_i > 10 
+    @inside_members.each do |member| 
+      if Time.now.to_i - member.updated_at.to_i > 5400 
         member.update_attribute(:inside, "off") 
       end 
     end 
-    @tMembers = Member.order(useRate: :desc).limit(5)
-    @asd = CardInfo.all
+    @top_use_members = Member.order(useRate: :desc).limit(5)
+    @not_use_card = CardInfo.all  
   end
 
   def show
@@ -32,7 +30,7 @@ class MembersController < ApplicationController
   def confirm
    @member = Member.find(params[:member_id])
    @member.update_attribute(:confirm, "YC")
-   redirect_to members_url
+   redirect_to :back
  end
 
  def search
@@ -62,6 +60,8 @@ def create
       end
       CardInfo.where(cardId: @member.cardId).destroy_all
     end
+  else
+    redirect_to :back
   end
 end
 

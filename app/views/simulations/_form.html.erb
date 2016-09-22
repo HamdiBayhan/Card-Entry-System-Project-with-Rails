@@ -11,12 +11,12 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :simId %>
-    <%= f.number_field :simId %>
+  <div class="form-group">
+    <%= f.label :simId, "Kart ID" %>
+    <%= f.number_field :simId, class: 'form-control' %>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Giriş Yap" %>
   </div>
 <% end %>
